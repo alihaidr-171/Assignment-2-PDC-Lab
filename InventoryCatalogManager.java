@@ -79,7 +79,7 @@ public class InventoryCatalogManager
 
         double seconds = (end - start) / 1_000_000_000.0;
 
-        System.out.println("ConcurrentHashMap Time: " + seconds + " seconds");
+        System.out.println("ConcurrentHashMap time: " + seconds + " seconds");
 
         System.out.println("ConcurrentHashMap Throughput: " + (100000.0 / seconds) + " operations/second");
     }
