@@ -44,7 +44,7 @@ public class InventoryCatalogManager
 
         System.out.println("SynchronizedMap Time: " + seconds + " seconds");
 
-        System.out.println("SynchronizedMap Throughput: " + (50000.0 / seconds) + " operations/second");
+        System.out.println("SynchronizedMap Throughput: " + (100000.0 / seconds) + " operations/second");
     }
 
     public void benchmarkConcurrentMap() throws InterruptedException
@@ -81,7 +81,7 @@ public class InventoryCatalogManager
 
         System.out.println("ConcurrentHashMap Time: " + seconds + " seconds");
 
-        System.out.println("ConcurrentHashMap Throughput: " + (50000.0 / seconds) + " operations/second");
+        System.out.println("ConcurrentHashMap Throughput: " + (100000.0 / seconds) + " operations/second");
     }
 
     public static void main(String[] args) throws InterruptedException
