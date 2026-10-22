@@ -13,7 +13,7 @@ public class LogProcessorTask implements Runnable
             }
             catch(InterruptedException e)
             {
-                System.out.println("Log thread interrupted");
+                System.out.println("Log thread interrupteD");
             }
         }
     }
