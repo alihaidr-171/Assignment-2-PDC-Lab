@@ -56,7 +56,7 @@ public class ForkJoinPortfolioApp
         System.out.println("Total Parallel Task Time: " + (parallelTime + stressTime) / 1000000.0 + " ms");
 
         if(parallelTime > 0)
-            System.out.println("Speedup Ratio: " + (double) serialTime / parallelTime);
+            System.out.printf("Speedup Ratio: %.2fx%n", (double) serialTime / parallelTime);
 
         pool.shutdown();
     }
