@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.*;
 
@@ -15,8 +17,8 @@ public class SensorGridMonitorApp
         int workers = 4;
         int chunkSize = n / workers;
 
-        Future<Double>[] minResults = new Future[workers];
-        Future<Double>[] maxResults = new Future[workers];
+       List<Future<Double>> minResults = new ArrayList<>();
+       List<Future<Double>> maxResults = new ArrayList<>();
 
         ExecutorService executor =
             Executors.newFixedThreadPool(workers);
@@ -28,9 +30,9 @@ public class SensorGridMonitorApp
             int start = i * chunkSize;
             int end = start + chunkSize;
 
-            minResults[i] = executor.submit(() -> new ParallelMinSearch( sensorData, start, end).processGrid());
+           minResults.add(executor.submit(() -> new ParallelMinSearch(sensorData, start, end).processGrid()));
 
-            maxResults[i] = executor.submit(() -> new ParallelMaxSearch(sensorData, start, end).processGrid());
+          maxResults.add(executor.submit(() -> new ParallelMaxSearch(sensorData, start, end).processGrid()));
         }
 
         double min = Double.MAX_VALUE;
@@ -38,8 +40,8 @@ public class SensorGridMonitorApp
 
         for(int i = 0; i < workers; i++)
         {
-            min = Math.min(min, minResults[i].get());
-            max = Math.max(max, maxResults[i].get());
+            min = Math.min(min, minResults.get(i).get());
+            max = Math.max(max, maxResults.get(i).get());
         }
 
         long endTime = System.nanoTime();
